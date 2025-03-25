@@ -1,21 +1,22 @@
-{% set name = "massren" %}
-{% set version = "1.5.6" %}
+{% set version = "1.5.7" %}
 
 package:
-  name: {{ name|lower }}
+  name: massren
   version: {{ version }}
 
 source:
   url: https://github.com/laurent22/massren/archive/v{{ version }}.tar.gz
-  sha256: 49758b477a205f3fbf5bbe72c2575fff8b5536f8c6b45f8f6bd2fdde023ce874
+  sha256: 7e7dd149bd3364235247268cc684b5a35badd9bee22f39960e075c792d037a8c
 
 build:
   number: 0
-  skip: True  # [win]
+  skip: true  # [win]
 
 requirements:
   build:
-    - {{ compiler('go-nocgo') }}
+    - {{ compiler('go-cgo') }}
+    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - go-licenses
   host:
     - sqlite
